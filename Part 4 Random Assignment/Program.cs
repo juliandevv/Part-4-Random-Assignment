@@ -41,7 +41,8 @@ namespace Part_4_Random_Assignment
                 }
                 else
                 {
-                    Console.WriteLine("Minimum value cannot be less than the maximum value!");
+                    Console.WriteLine("Maximum value cannot be less than the minimum value!");
+                    minMax.Clear();
                 }
             }
             Console.WriteLine($"Generating integers from the range {minMax[0]}, {minMax[1]}");
@@ -76,6 +77,10 @@ namespace Part_4_Random_Assignment
             Console.WriteLine("Generating random decimal numbers within the same range as before...");
             for (int i = 0; i < 3; i++)
             {
+                int integerMin = Convert.ToInt32(minMax[0]);
+                int integerMax = Convert.ToInt32(minMax[1]);
+
+
                 int decimalMin = DecimalsAsInt(minMax[0]);
                 int decimalMax = DecimalsAsInt(minMax[1]);
                 double maxLength = decimalMax.ToString().Length;
@@ -83,10 +88,15 @@ namespace Part_4_Random_Assignment
                 {
                     decimalMin = decimalMin / Convert.ToInt32(Math.Pow(10, maxLength));
                 }
+                decimalMax = decimalMax * 10;
                 double decimals = generator.Next(decimalMin, decimalMax);
                 decimals = decimals * Math.Pow(10, decimals.ToString().Length * -1);
-                Console.WriteLine(decimals);
+                int rndNum = generator.Next(integerMin, integerMax);
+                rndNumbers.Add(rndNum + decimals);
+                Console.WriteLine(rndNum + decimals);
+
             }
+
 
             Console.ReadLine();
         }
@@ -96,6 +106,7 @@ namespace Part_4_Random_Assignment
             double decimals = num - Math.Truncate(num);
             string decimalsStr = decimals.ToString();
             double decimalLength = decimalsStr.Substring(decimalsStr.IndexOf(".")).Length;
+            Console.WriteLine(decimalLength);
             int result = Convert.ToInt32(decimals * Math.Pow(10, decimalLength));
 
             return result;
