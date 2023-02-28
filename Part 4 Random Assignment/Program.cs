@@ -18,7 +18,7 @@ namespace Part_4_Random_Assignment
             string[] prompts = { "Minimum value:", "Maximum value:" };
 
             Console.WriteLine("I am a program that generates random numbers");
-            Console.WriteLine("Enter a range of values generate");
+            Console.WriteLine("Enter a range of values generate within");
 
             while (true)
             {
@@ -31,7 +31,7 @@ namespace Part_4_Random_Assignment
                     }
                     else
                     {
-                        Console.WriteLine("No a valid input!");
+                        Console.WriteLine("Not a valid input!");
                         i--;
                     }
                 }
@@ -103,11 +103,17 @@ namespace Part_4_Random_Assignment
 
         static int DecimalsAsInt(double num)
         {
+            //Console.WriteLine(num);
             double decimals = num - Math.Truncate(num);
-            string decimalsStr = decimals.ToString();
-            double decimalLength = decimalsStr.Substring(decimalsStr.IndexOf(".")).Length;
-            Console.WriteLine(decimalLength);
-            int result = Convert.ToInt32(decimals * Math.Pow(10, decimalLength));
+            if (decimals == 0) { decimals = 1; }
+            //Console.WriteLine(decimals);
+            //string decimalsStr = decimals.ToString();
+            //int startIndex = decimalsStr.IndexOf(".")+2;
+            //if (startIndex < 0) { startIndex = 0; }
+            //Console.WriteLine(startIndex);
+            //double decimalLength = decimalsStr.Substring(startIndex).Length;
+            //Console.WriteLine(decimalLength);
+            int result = Convert.ToInt32(decimals * Math.Pow(10, 5));
 
             return result;
         }
